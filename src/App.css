@@ -1,1 +1,33 @@
 
+
+.allData {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.posts {
+    border: 2px solid black;
+    width: 45%;
+    height: 600px;
+    overflow: auto;
+    text-align: center;
+}
+
+.chosen {
+    border: 2px solid unset;
+    width: 45%;
+    height: 600px;
+    margin-left: 20px;
+
+}
+.wrapper {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+.usersAndPosts{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
