@@ -14,6 +14,12 @@ const Cars = () => {
     },[allCars]);
 
 
+    const carRemove = ((id) => {
+        const newList = cars.filter((item) => item.id !== id);
+        carService.deleteById(id);
+
+        setCars(newList);
+    })
 
     return (
         <div>
@@ -21,7 +27,7 @@ const Cars = () => {
                 <CarForm setAllCars={setAllCars} carForUpdate={carForUpdate}/>
                 <hr/>
             {
-                cars.map(car=><Car key={car.id} car={car} setCarForUpdate={setCarForUpdate}/>)
+                cars.map(car=><Car key={car.id} car={car} setCarForUpdate={setCarForUpdate} carRemove={carRemove} />)
             }
 
         </div>

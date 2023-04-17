@@ -1,7 +1,8 @@
 import React from 'react';
-import {carService} from "../../services/car.service";
 
-const Car = ({car,setCarForUpdate}) => {
+
+
+const Car = ({car,setCarForUpdate,carRemove}) => {
 
     const{id,brand,price,year} = car;
 
@@ -14,7 +15,7 @@ const Car = ({car,setCarForUpdate}) => {
             <div>price:{price}</div>
             <div>year:{year}</div>
             <button onClick={() => setCarForUpdate(car)}>Update</button>
-            <button onClick={()=>{carService.deleteById(id)}}>Delete</button>
+            <button onClick={()=>carRemove(id)}>Delete</button>
             <hr/>
 
         </div>
