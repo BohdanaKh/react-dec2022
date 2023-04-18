@@ -2,12 +2,18 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {saveUser} from "../services/user.service";
 import {IUser} from "../interfaces/user.interface";
-import {FC} from "react";
+import {userValidator} from "../validators/user.validator";
+import {joiResolver} from "@hookform/resolvers/joi";
 
-const PostUser:FC<IUser> = () => {
 
-    const {register, handleSubmit, formState:{errors}} = useForm();
-    const onSubmit:FC<IUser> = (data) => {
+
+const PostUser = () => {
+
+    const {register, handleSubmit, formState:{errors}} = useForm<IUser>({
+        mode: 'all',
+        resolver: joiResolver(userValidator)
+    });
+    const onSubmit = (data:IUser) => {
         saveUser(data).then(({data}) => console.log(data));
     }
     return (
@@ -16,16 +22,16 @@ const PostUser:FC<IUser> = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <input type="text" placeholder={'id'} {...register('id')}/>
-                {errors.id && <span>field is required</span>}
+                {errors.id && <span>{errors.id.message}</span>}
 
                 <input type="text" placeholder={'name'} {...register('name')}/>
-                {errors.name && <span>field is required</span>}
+                {errors.name && <span>{errors.name.message}</span>}
 
                 <input type="text" placeholder={'username'} {...register('username')}/>
-                {errors.username && <span>field is required</span>}
+                {errors.username && <span>{errors.username.message}</span>}
 
                 <input type="text" placeholder={'email'} {...register('email')}/>
-                {errors.email && <span>field is required</span>}
+                {errors.email && <span>{errors.email.message}</span>}
 
 
                 <input type="submit" value={'save user'}/>

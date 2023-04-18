@@ -1,12 +1,16 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {useForm} from "react-hook-form";
 import {IComment} from "../interfaces/comment.interface";
 import {saveComment} from "../services/comment.service";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {commentValidator} from "../validators/comment.validator";
+const PostComment= () => {
 
-const PostComment:FC<IComment> = () => {
-
-    const {register, handleSubmit, formState:{errors}} = useForm();
-    const onSubmit = (data) => {
+    const {register, handleSubmit, formState:{errors}} = useForm<IComment>({
+        mode: 'all',
+        resolver: joiResolver(commentValidator)
+    });
+    const onSubmit = (data: IComment) => {
         saveComment(data).then(({data}) => console.log(data));
     }
     return (
@@ -15,19 +19,19 @@ const PostComment:FC<IComment> = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <input type="text" placeholder={'postId'} {...register('postId')}/>
-                {errors.id && <span>field is required</span>}
+                {errors.postId && <span>{errors.postId.message}</span>}
 
                 <input type="text" placeholder={'id'} {...register('id')}/>
-                {errors.name && <span>field is required</span>}
+                {errors.id && <span>{errors.id.message}</span>}
 
                 <input type="text" placeholder={'name'} {...register('name')}/>
-                {errors.username && <span>field is required</span>}
+                {errors.name && <span>{errors.name.message}</span>}
 
                 <input type="text" placeholder={'email'} {...register('email')}/>
-                {errors.email && <span>field is required</span>}
+                {errors.email && <span>{errors.email.message}</span>}
 
                 <input type="text" placeholder={'body'} {...register('body')}/>
-                {errors.email && <span>field is required</span>}
+                {errors.body && <span>{errors.body.message}</span>}
 
 
                 <input type="submit" value={'save comment'}/>

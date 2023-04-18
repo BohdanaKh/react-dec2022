@@ -3,25 +3,14 @@ import {ICar} from "../interfaces/car.interface";
 import {carService} from "../services/car.service";
 import Car from "../Car/Car";
 import {CarForm} from "../CarForm/CarForm";
-import {Dispatch, FC, SetStateAction} from "react";
 
 
-// interface IProps{
-//     setCars:Dispatch<SetStateAction<ICar>>;
-//     cars:ICar[];
-//     allCars:ICar;
-//     setAllCars:Dispatch<SetStateAction<ICar>>;
-//     setCarForUpdate:Dispatch<SetStateAction<ICar>>;
-//     carForUpdate:ICar;
-//
-//
-// }
 
 const Cars= () => {
 
     const [cars,setCars]= useState<ICar[]>([]);
     // @ts-ignore
-    const [allCars,setAllCars] = useState<ICar>(null);
+    const [allCars,setAllCars] = useState<boolean>(null);
     // @ts-ignore
     const [carForUpdate,setCarForUpdate] = useState<ICar>(null);
 
@@ -32,11 +21,14 @@ const Cars= () => {
     },[allCars]);
 
 
-    const carRemove:FC<ICar> = ((id) => {
-        const newList = cars.filter(item => item.id !== id);
-        carService.deleteById(id);
+    const del:any = ((id:number) => {
+        // const newList = cars.filter(item => item.id !== id);
+        carService.deleteById(id).then(r =>{
+            const newList = cars.filter(item => item.id !== id );
+            setCars(newList);
+        })
 
-        setCars(newList);
+
     })
 
 
@@ -46,7 +38,7 @@ const Cars= () => {
             <hr/>
 
             {
-                cars.map(car => <Car car={car} key={car.id} setCarForUpdate={setCarForUpdate} carRemove={carRemove}/>)
+                cars.map(car => <Car car={car} key={car.id} setCarForUpdate={setCarForUpdate} del={del}/>)
 
 
             }

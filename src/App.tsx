@@ -9,7 +9,9 @@ import PostComment from "./PostComment/PostComment";
 const App = () => {
   return (
       <div>
-<Cars/>
+
+
+            <Cars/>
 
 
           <hr/>

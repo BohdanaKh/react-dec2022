@@ -9,7 +9,7 @@ import {Dispatch, FC, SetStateAction} from "react";
 
 
 interface IProps{
-    setAllCars:Dispatch<SetStateAction<ICar>>;
+    setAllCars:Dispatch<SetStateAction<boolean>>;
     carForUpdate:ICar;
 }
 
@@ -29,15 +29,16 @@ const CarForm:FC<IProps> = ({setAllCars, carForUpdate}) => {
 
     const save:SubmitHandler<ICar> = async (car) => {
         await carService.create(car)
-        // setAllCars(prev=>!prev)
+        setAllCars(prev=>!prev)
         reset()
     };
 
     const update:SubmitHandler<ICar> = async (car) => {
         await carService.updateById(carForUpdate.id, car)
-        // setAllCars()
+        setAllCars(prevState => !prevState)
         reset()
     };
+
 
     return (
         <form onSubmit={handleSubmit(carForUpdate ? update : save)}>
