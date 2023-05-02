@@ -1,6 +1,6 @@
-const baseURL = "https://jsonplaceholder.typicode.com"
+const baseURL = 'https://jsonplaceholder.typicode.com'
 
-const baseCarApiURL = "http://owu.linkpc.net/carsAPI/v1"
+const baseCarApiURL = 'http://owu.linkpc.net/carsAPI/v1'
 
 
 const urls = {
@@ -9,9 +9,8 @@ const urls = {
 }
 console.log(urls.users);
 
-const carsUrl = {
-    cars: '/cars'
-}
+const carsUrl = '/cars'
+
 
 export {
     baseURL,

@@ -7,13 +7,14 @@ import {useAppReducer} from "../../hooks/useAppReducer";
 
 const Posts = () => {
 
-    const [{posts},dispatch] = useAppReducer((state) => state.posts);
+    const [posts,dispatch] = useAppReducer((state) => state.posts);
 
     useEffect(() => {
         placeholderService.getAllPosts().then(value => value.data).then(value => dispatch(placeActions.loadPosts(value)))
 
 
     },[dispatch])
+    console.log(posts);
     return (
         <div>
             {

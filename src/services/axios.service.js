@@ -5,10 +5,10 @@ import {baseCarApiURL} from "../constants/urls";
 
 
 const axiosService  = axios.create({baseURL});
-console.log(axiosService);
+
 
 const carsAxiosService = axios.create({baseCarApiURL});
-console.log(carsAxiosService);
+
 
 
 export {

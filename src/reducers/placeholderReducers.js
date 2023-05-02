@@ -1,22 +1,27 @@
+
 const placeActionTypes = {
     LOAD_ALL:'LOAD',
     ADD_ONE:'ADD'
 }
 
 const placeActions = {
-    loadUsers:(users)=>({type:placeActionTypes.LOAD_ALL, payload:users}),
+    // loadUsers:(users)=>({type:placeActionTypes.LOAD_ALL, payload:users}),
+    getAll:(users)=>({type:placeActionTypes.LOAD_ALL, payload:users}),
     loadPosts:(posts)=>({type:placeActionTypes.LOAD_ALL, payload:posts}),
     addUser:(user)=>({type:placeActionTypes.ADD_ONE, payload:user}),
     addPost:(post)=>({type:placeActionTypes.ADD_ONE, payload:post})
 }
 
-const placeInitialState = [];
+
+const userInitialState = [];
 
 
-const userReducer = (state=placeInitialState,action) =>{
+
+const userReducer = (state=userInitialState,action) =>{
     switch (action.type) {
-        case placeActions.loadUsers:
-            return [...action.payload];
+        case placeActions.getAll():
+        // case placeActionTypes.LOAD_ALL:
+            return [...state, action.payload];
         case placeActions.addUser:
             state.push(action.payload)
             return [...state]
@@ -25,7 +30,8 @@ const userReducer = (state=placeInitialState,action) =>{
     }
 }
 
-const postReducer = (state=placeInitialState,action) =>{
+const postInitialState =[];
+const postReducer = (state=postInitialState,action) =>{
     switch (action.type) {
         case placeActions.loadPosts:
             return [...action.payload];
@@ -40,8 +46,10 @@ const postReducer = (state=placeInitialState,action) =>{
 
 export {
     placeActions,
-    placeInitialState,
+   userInitialState,
+    postInitialState,
     postReducer,
-    userReducer
+    userReducer,
+    placeActionTypes
 }
 

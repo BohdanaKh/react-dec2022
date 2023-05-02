@@ -20,7 +20,7 @@ const carInitialState = {
     deleteCar:null,
     trigger: null
 }
-const carReducer = (state, action) => {
+const carReducer = (state=carInitialState, action) => {
     switch (action.type) {
         case carActionTypes.SET_ALL:
             return {...state, cars: action.payload}
