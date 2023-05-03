@@ -20,6 +20,9 @@ const Posts = () => {
             {
             posts.map(post => <Post key={post.id} post={post}/> )
             }
+            <button onClick={()=>{
+                dispatch(placeActions.addPost())
+            }}>add post</button>
         </div>
     );
 };

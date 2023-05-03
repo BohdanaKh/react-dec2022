@@ -6,6 +6,10 @@ import {carService} from "../../services/car.service";
 const Car = ({car}) => {
     const [, dispatch] = useAppReducer(state=>state.cars);
     const {id, brand, price, year} = car;
+    const deleteCar = async () => {
+        await carService.deleteById(id);
+        dispatch(carActions.setTrigger())
+    };
 
 
     return (
@@ -15,7 +19,7 @@ const Car = ({car}) => {
             <div>price: {price}</div>
             <div>year: {year}</div>
             <button onClick={()=>dispatch(carActions.setCarForUpdate(car))}>update</button>
-            <button onClick={()=>dispatch(carActions.deleteCar(car))}>delete</button>
+            <button onClick={()=>deleteCar(car)}>delete</button>
 
         </div>
     );

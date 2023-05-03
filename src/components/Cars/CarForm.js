@@ -23,6 +23,7 @@ const CarForm = () => {
         dispatch(carActions.setTrigger())
         reset()
     }
+
     const update = async (car) => {
         await carService.updateById(carForUpdate.id, car)
         dispatch(carActions.setTrigger())
@@ -39,5 +40,4 @@ const CarForm = () => {
         </form>
     );
 };
-
 export {CarForm};

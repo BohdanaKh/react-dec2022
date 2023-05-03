@@ -1,20 +1,23 @@
-const baseURL = 'https://jsonplaceholder.typicode.com'
+const placeBaseURL = 'https://jsonplaceholder.typicode.com/'
+const carsBaseURL = 'http://owu.linkpc.net/carsAPI/v1'
 
-const baseCarApiURL = 'http://owu.linkpc.net/carsAPI/v1'
-
+const users = '/users'
+const posts = '/posts'
+const cars = '/cars'
 
 const urls = {
-    users: '/users',
-    posts: '/posts'
+    carAPI: {
+        cars,
+        byId: (id) => `${cars}/${id}`
+},
+placeAPI: {
+    users,
+    posts
 }
-console.log(urls.users);
-
-const carsUrl = '/cars'
-
+}
 
 export {
-    baseURL,
-    baseCarApiURL,
-    urls,
-    carsUrl
+    placeBaseURL,
+    carsBaseURL,
+    urls
 }

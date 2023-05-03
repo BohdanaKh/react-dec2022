@@ -1,12 +1,12 @@
-import {axiosService} from "./axios.service";
+import {placeAxiosService} from "./axios.service";
 import {urls} from "../constants/urls";
 
 
 const placeholderService = {
-    getAllUsers:()=>axiosService.get(urls.users),
-    getAllPosts: () => axiosService.get(urls.posts),
-    createUser: (user) => axiosService.post(urls.users, user),
-    createPost: (post) => axiosService.post(urls.posts, post)
+    getAllUsers:()=>placeAxiosService.get(urls.placeAPI.users),
+    getAllPosts: () => placeAxiosService.get(urls.placeAPI.posts),
+    createUser: (user) => placeAxiosService.post(urls.placeAPI.users, user),
+    createPost: (post) => placeAxiosService.post(urls.placeAPI.posts, post)
 
 }
 
