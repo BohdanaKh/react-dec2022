@@ -1,10 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {carService} from "../../services";
 
 const initialState = {
     users:[],
     comments:[],
-    cars: []
+    cars: [],
+    trigger: null,
+    carForUpdate: null
 };
 
 const slice = createSlice({
@@ -13,15 +14,10 @@ const slice = createSlice({
     reducers: {
         setCars: (state, action) => {
             state.cars = action.payload},
-        addCar: (state, action) => {
-            const car = action.payload.car;
-            carService.create(car)},
-        deleteCar:(state,action) =>{
-            const idForDelCar = action.payload;
-            carService.deleteById(idForDelCar)},
         setCarForUpdate:(state,action) =>{
-            const {id,car} = action.payload
-            carService.updateById(id,car)
+            state.carForUpdate = action.payload},
+        setTrigger:(state,action) => {
+            state.trigger = !state.trigger
         }
     }
 });
